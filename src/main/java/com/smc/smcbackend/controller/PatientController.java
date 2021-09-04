@@ -2,6 +2,7 @@ package com.smc.smcbackend.controller;
 
 import com.smc.smcbackend.model.Patient;
 import com.smc.smcbackend.service.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public class PatientController {
     private final PatientService patientService;
 
+    @Autowired
     public PatientController(PatientService patientService){
         this.patientService = patientService;
     }
