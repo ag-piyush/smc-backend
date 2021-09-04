@@ -12,8 +12,7 @@ import org.springframework.data.annotation.Id;
 @Builder
 public class Appointment {
 
-    @Id
-    private String id;
-    private String patientId;
-    private String consultationId;
+  @Id private String id;
+  private String patientId;
+  private String consultationId;
 }

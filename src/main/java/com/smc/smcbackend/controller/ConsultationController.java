@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/consultation")
 public class ConsultationController {
-    private final ConsultationService consultationService;
+  private final ConsultationService consultationService;
 
-    @Autowired
-    public ConsultationController(ConsultationService consultationService){
-        this.consultationService = consultationService;
-    }
+  @Autowired
+  public ConsultationController(ConsultationService consultationService) {
+    this.consultationService = consultationService;
+  }
 
-    @PostMapping
-    public Consultation createConsultation(@RequestBody Consultation consultation){
-        return this.consultationService.createConsultation(consultation);
-    }
+  @PostMapping
+  public Consultation createConsultation(@RequestBody Consultation consultation) {
+    return this.consultationService.createConsultation(consultation);
+  }
 }

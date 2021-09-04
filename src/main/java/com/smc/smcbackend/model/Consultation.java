@@ -13,12 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Consultation {
-    @Id
-    private String id;
-    private String patientId;
-    private String date;
-    private List<String> medicalConditions;
-    private List<String> tests;
-    private List<String> medicines;
-    private String notes;
+  @Id private String id;
+  private String patientId;
+  private String date;
+  private List<String> medicalConditions;
+  private List<String> tests;
+  private List<String> medicines;
+  private String notes;
 }

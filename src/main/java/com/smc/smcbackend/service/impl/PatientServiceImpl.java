@@ -14,36 +14,36 @@ import java.util.Optional;
 @Slf4j
 public class PatientServiceImpl implements PatientService {
 
-    final private PatientRepository patientRepository;
+  private final PatientRepository patientRepository;
 
-    @Autowired
-    public PatientServiceImpl(PatientRepository patientRepository){
-        this.patientRepository = patientRepository;
+  @Autowired
+  public PatientServiceImpl(PatientRepository patientRepository) {
+    this.patientRepository = patientRepository;
+  }
+
+  @Override
+  public Patient findById(String id) {
+    Optional<Patient> optionalPatient = this.patientRepository.findById(id);
+
+    if (!optionalPatient.isPresent()) {
+      log.debug("No patient found for this id: {}", id);
+      return null;
     }
+    return optionalPatient.get();
+  }
 
-    @Override
-    public Patient findById(String id) {
-        Optional<Patient> optionalPatient = this.patientRepository.findById(id);
+  @Override
+  public List<Patient> findAll() {
+    return this.patientRepository.findAll();
+  }
 
-        if(!optionalPatient.isPresent()) {
-            log.debug("No patient found for this id: {}", id);
-            return null;
-        }
-        return optionalPatient.get();
-    }
+  @Override
+  public Patient savePatient(Patient patient) {
+    return this.patientRepository.save(patient);
+  }
 
-    @Override
-    public List<Patient> findAll() {
-        return this.patientRepository.findAll();
-    }
-
-    @Override
-    public Patient savePatient(Patient patient) {
-        return this.patientRepository.save(patient);
-    }
-
-    @Override
-    public void deletePatient(String id) {
-        this.patientRepository.deleteById(id);
-    }
+  @Override
+  public void deletePatient(String id) {
+    this.patientRepository.deleteById(id);
+  }
 }

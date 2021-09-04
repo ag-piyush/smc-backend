@@ -15,11 +15,10 @@ import java.util.List;
 @Builder
 public class Patient {
 
-    @Id
-    private String id;
-    private String name;
-    private Integer age;
-    private Gender gender;
-    private List<String> medicalConditions;
-    private List<String> consultationIds;
+  @Id private String id;
+  private String name;
+  private Integer age;
+  private Gender gender;
+  private List<String> medicalConditions;
+  private List<String> consultationIds;
 }

@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class ConsultationServiceImpl implements ConsultationService {
-    private final ConsultationRepository consultationRepository;
+  private final ConsultationRepository consultationRepository;
 
-    @Autowired
-    public ConsultationServiceImpl(ConsultationRepository consultationRepository){
-        this.consultationRepository = consultationRepository;
-    }
+  @Autowired
+  public ConsultationServiceImpl(ConsultationRepository consultationRepository) {
+    this.consultationRepository = consultationRepository;
+  }
 
-    @Override
-    public Consultation createConsultation(Consultation consultation) {
-        return this.consultationRepository.save(consultation);
-    }
+  @Override
+  public Consultation createConsultation(Consultation consultation) {
+    return this.consultationRepository.save(consultation);
+  }
 }

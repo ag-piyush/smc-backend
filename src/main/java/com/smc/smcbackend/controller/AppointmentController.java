@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/appointment")
 public class AppointmentController {
-    private final AppointmentService appointmentService;
+  private final AppointmentService appointmentService;
 
-    @Autowired
-    public AppointmentController(AppointmentService appointmentService){
-        this.appointmentService = appointmentService;
-    }
+  @Autowired
+  public AppointmentController(AppointmentService appointmentService) {
+    this.appointmentService = appointmentService;
+  }
 
-    @PostMapping("/{patientId}")
-    public ResponseEntity<Appointment> createAppointment(@PathVariable("patientId") String patientId){
-        Appointment appointment = this.appointmentService.createAppointment(patientId);
+  @PostMapping("/{patientId}")
+  public ResponseEntity<Appointment> createAppointment(
+      @PathVariable("patientId") String patientId) {
+    Appointment appointment = this.appointmentService.createAppointment(patientId);
 
-        if(appointment == null)
-            return ResponseEntity.status(401).build();
+    if (appointment == null) return ResponseEntity.status(401).build();
 
-        return ResponseEntity.ok(appointment);
-    }
+    return ResponseEntity.ok(appointment);
+  }
 }
