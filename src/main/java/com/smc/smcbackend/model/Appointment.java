@@ -15,4 +15,5 @@ public class Appointment {
   @Id private String id;
   private String patientId;
   private String consultationId;
+  private String date;
 }

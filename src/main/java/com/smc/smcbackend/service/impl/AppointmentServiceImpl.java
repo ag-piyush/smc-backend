@@ -32,7 +32,7 @@ public class AppointmentServiceImpl implements AppointmentService {
   }
 
   @Override
-  public Appointment createAppointment(String patientId) {
+  public Appointment createAppointment(String patientId, String date) {
 
     Patient patient = this.patientService.findById(patientId);
     if (patient == null) {
@@ -43,7 +43,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     log.info("Patient isn't null!");
 
     log.info("Creating consultation!");
-    Consultation consultation = Consultation.builder().patientId(patientId).build();
+    Consultation consultation = Consultation.builder().patientId(patientId).date(date).build();
     log.info("Saving consultation!");
     consultation = this.consultationService.createConsultation(consultation);
 
@@ -70,6 +70,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         Appointment.builder()
             .patientId(patient.getId())
             .consultationId(consultation.getId())
+            .date(date)
             .build();
 
     return this.appointmentRepository.save(appointment);

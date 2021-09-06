@@ -16,10 +16,10 @@ public class AppointmentController {
     this.appointmentService = appointmentService;
   }
 
-  @PostMapping("/{patientId}")
+  @PostMapping("/create")
   public ResponseEntity<Appointment> createAppointment(
-      @PathVariable("patientId") String patientId) {
-    Appointment appointment = this.appointmentService.createAppointment(patientId);
+      @RequestParam(value="patientId") String patientId, @RequestParam(value="date") String date) {
+    Appointment appointment = this.appointmentService.createAppointment(patientId, date);
 
     if (appointment == null) return ResponseEntity.status(401).build();
 
