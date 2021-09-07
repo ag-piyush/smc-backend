@@ -36,43 +36,46 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     Patient patient = this.patientService.findById(patientId);
     if (patient == null) {
-      log.info("Patient is null!");
       return null;
     }
 
-    log.info("Patient isn't null!");
-
-    log.info("Creating consultation!");
-    Consultation consultation = Consultation.builder().patientId(patientId).date(date).build();
-    log.info("Saving consultation!");
+    Consultation consultation = Consultation.builder()
+            .patientId(patientId)
+            .date(date)
+            .build();
     consultation = this.consultationService.createConsultation(consultation);
 
     log.info("Consultation created with id {}", consultation.getId());
 
-    if (patient.getConsultationIds() == null) {
-      log.info("Patient Consultation List empty!");
-      List<String> consultationIds = new ArrayList<>();
-      log.info("Creating empty consultation list!");
-      patient.setConsultationIds(consultationIds);
-      log.info("Created empty consultation list!");
-    }
-
-    log.info("Adding consultation id!");
-    patient.getConsultationIds().add(consultation.getId());
-
-    log.info("Consultation id added!");
-
-    log.info("Saving patient to repository!");
-    patient = this.patientService.savePatient(patient);
-
     log.info("Creating appointment!");
     Appointment appointment =
-        Appointment.builder()
-            .patientId(patient.getId())
-            .consultationId(consultation.getId())
-            .date(date)
-            .build();
+            Appointment.builder()
+                    .patientId(patient.getId())
+                    .consultationId(consultation.getId())
+                    .date(date)
+                    .build();
 
-    return this.appointmentRepository.save(appointment);
+    appointment = this.appointmentRepository.save(appointment);
+
+    log.info("Adding consultation id to patient");
+    if (patient.getConsultationIds() == null) {
+      List<String> consultationIds = new ArrayList<>();
+      patient.setConsultationIds(consultationIds);
+    }
+
+    patient.getConsultationIds().add(consultation.getId());
+
+    log.info("Adding appointment id to patient");
+    if (patient.getAppointmentIds() == null) {
+      List<String> appointmentIds = new ArrayList<>();
+      patient.setAppointmentIds(appointmentIds);
+    }
+
+    patient.getAppointmentIds().add(appointment.getId());
+
+    log.info("Saving patient");
+    this.patientService.savePatient(patient);
+
+    return appointment;
   }
 }

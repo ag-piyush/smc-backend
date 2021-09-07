@@ -21,4 +21,5 @@ public class Patient {
   private Gender gender;
   private List<String> medicalConditions;
   private List<String> consultationIds;
+  private List<String> appointmentIds;
 }
