@@ -39,21 +39,18 @@ public class AppointmentServiceImpl implements AppointmentService {
       return null;
     }
 
-    Consultation consultation = Consultation.builder()
-            .patientId(patientId)
-            .date(date)
-            .build();
+    Consultation consultation = Consultation.builder().patientId(patientId).date(date).build();
     consultation = this.consultationService.createConsultation(consultation);
 
     log.info("Consultation created with id {}", consultation.getId());
 
     log.info("Creating appointment!");
     Appointment appointment =
-            Appointment.builder()
-                    .patientId(patient.getId())
-                    .consultationId(consultation.getId())
-                    .date(date)
-                    .build();
+        Appointment.builder()
+            .patientId(patient.getId())
+            .consultationId(consultation.getId())
+            .date(date)
+            .build();
 
     appointment = this.appointmentRepository.save(appointment);
 

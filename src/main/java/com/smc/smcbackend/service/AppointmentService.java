@@ -4,4 +4,6 @@ import com.smc.smcbackend.model.Appointment;
 
 public interface AppointmentService {
   Appointment createAppointment(String patientId, String date);
+
+  // TODO: Get apis
 }
