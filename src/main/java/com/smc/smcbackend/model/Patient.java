@@ -1,5 +1,6 @@
 package com.smc.smcbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.smc.smcbackend.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,15 +32,10 @@ public class Patient {
   @Column(name = "gender")
   private Gender gender;
 
-//  @OneToMany(targetEntity = MedicalCondition.class, mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//  private List<MedicalCondition> medicalConditions;
-
-  @OneToMany(targetEntity = Consultation.class, mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  private List<Consultation> consultations;
-
+  @JsonManagedReference
   @OneToMany(targetEntity = Appointment.class, mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Appointment> appointments;
 
   //Todo: Patient Feedback
-  //Appointment notification
+  //Todo: Appointment notification
 }

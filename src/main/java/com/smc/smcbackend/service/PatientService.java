@@ -1,5 +1,6 @@
 package com.smc.smcbackend.service;
 
+import com.smc.smcbackend.model.Appointment;
 import com.smc.smcbackend.model.Patient;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface PatientService {
   Patient savePatient(Patient patient);
 
   void deletePatient(Integer id);
+
+  List<Appointment> findAllAppointments(Integer id);
 }

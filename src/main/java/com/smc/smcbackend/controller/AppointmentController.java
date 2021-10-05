@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/appointment")
 public class AppointmentController {
@@ -25,5 +27,15 @@ public class AppointmentController {
     if (appointment == null) return ResponseEntity.status(401).build();
 
     return ResponseEntity.ok(appointment);
+  }
+
+  @GetMapping
+  public List<Appointment> findAllAppointments(){
+    return this.appointmentService.findAll();
+  }
+
+  @GetMapping("/{id}")
+  public Appointment findById(@PathVariable("id") Integer id){
+    return this.appointmentService.findById(id);
   }
 }

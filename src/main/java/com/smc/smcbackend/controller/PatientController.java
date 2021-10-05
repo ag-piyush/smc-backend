@@ -1,5 +1,6 @@
 package com.smc.smcbackend.controller;
 
+import com.smc.smcbackend.model.Appointment;
 import com.smc.smcbackend.model.Patient;
 import com.smc.smcbackend.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,13 @@ public class PatientController {
     return this.patientService.savePatient(patient);
   }
 
-
-
   @DeleteMapping("/{id}")
   public void deletePatient(@PathVariable("id") Integer id) {
     this.patientService.deletePatient(id);
+  }
+
+  @GetMapping("/{id}/appointments")
+  public List<Appointment> findAllAppointments(@PathVariable("id") Integer id){
+    return this.patientService.findAllAppointments(id);
   }
 }

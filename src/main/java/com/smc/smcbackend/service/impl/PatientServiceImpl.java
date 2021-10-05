@@ -1,5 +1,6 @@
 package com.smc.smcbackend.service.impl;
 
+import com.smc.smcbackend.model.Appointment;
 import com.smc.smcbackend.model.Patient;
 import com.smc.smcbackend.repository.PatientRepository;
 import com.smc.smcbackend.service.PatientService;
@@ -45,5 +46,15 @@ public class PatientServiceImpl implements PatientService {
   @Override
   public void deletePatient(Integer id) {
     this.patientRepository.deleteById(id);
+  }
+
+  @Override
+  public List<Appointment> findAllAppointments(Integer id) {
+    Patient patient = findById(id);
+
+    if (patient==null) {
+      return null;
+    }
+    return patient.getAppointments();
   }
 }

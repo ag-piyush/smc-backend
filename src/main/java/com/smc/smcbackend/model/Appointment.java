@@ -1,5 +1,6 @@
 package com.smc.smcbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,15 +21,24 @@ public class Appointment {
   @Column(name = "id", nullable = false)
   private Integer id;
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "patient_id", nullable = false)
   private Patient patient;
 
-  @OneToOne
-  @JoinColumn(name = "consultation_id", nullable = false)
-  private Consultation consultation;
-
   @Column(name = "date")
   private String date;
+
+  @Column(name = "medical_conditions")
+  private String medicalConditions;
+
+  @Column(name = "medical_tests")
+  private String medicalTests;
+
+  @Column(name = "medicines")
+  private String medicines;
+
+  @Column(name = "notes")
+  private String notes;
   //ToDo: Per day all appointments
 }
