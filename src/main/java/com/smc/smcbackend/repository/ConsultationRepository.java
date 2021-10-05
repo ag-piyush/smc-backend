@@ -1,6 +1,8 @@
 package com.smc.smcbackend.repository;
 
 import com.smc.smcbackend.model.Consultation;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ConsultationRepository extends MongoRepository<Consultation, String> {}
+@Repository
+public interface ConsultationRepository extends JpaRepository<Consultation, Integer> {}

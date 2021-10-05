@@ -18,7 +18,7 @@ public class AppointmentController {
 
   @PostMapping("/create")
   public ResponseEntity<Appointment> createAppointment(
-      @RequestParam(value = "patientId") String patientId,
+      @RequestParam(value = "patientId") Integer patientId,
       @RequestParam(value = "date") String date) {
     Appointment appointment = this.appointmentService.createAppointment(patientId, date);
 

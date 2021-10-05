@@ -1,8 +1,9 @@
 package com.smc.smcbackend.repository;
 
-import com.smc.smcbackend.model.Patient;
+import com.smc.smcbackend.model.MedicalCondition;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PatientRepository extends JpaRepository<Patient, Integer> {}
+public interface MedicalConditionRepository extends JpaRepository<MedicalCondition, Integer> {
+}

@@ -18,7 +18,7 @@ public class PatientController {
   }
 
   @GetMapping("/{id}")
-  public Patient findById(@PathVariable("id") String id) {
+  public Patient findById(@PathVariable("id") Integer id) {
     return this.patientService.findById(id);
   }
 
@@ -32,8 +32,10 @@ public class PatientController {
     return this.patientService.savePatient(patient);
   }
 
+
+
   @DeleteMapping("/{id}")
-  public void deletePatient(@PathVariable("id") String id) {
+  public void deletePatient(@PathVariable("id") Integer id) {
     this.patientService.deletePatient(id);
   }
 }

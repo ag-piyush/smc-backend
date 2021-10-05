@@ -22,7 +22,7 @@ public class PatientServiceImpl implements PatientService {
   }
 
   @Override
-  public Patient findById(String id) {
+  public Patient findById(Integer id) {
     Optional<Patient> optionalPatient = this.patientRepository.findById(id);
 
     if (!optionalPatient.isPresent()) {
@@ -43,7 +43,7 @@ public class PatientServiceImpl implements PatientService {
   }
 
   @Override
-  public void deletePatient(String id) {
+  public void deletePatient(Integer id) {
     this.patientRepository.deleteById(id);
   }
 }
